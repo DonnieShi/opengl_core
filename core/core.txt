@@ -1,0 +1,1 @@
+../../tmp/core/main.cpp.o ../../tmp/core/src_gl3w.c.o ../../tmp/core/core_ViewOGL.cpp.o   
