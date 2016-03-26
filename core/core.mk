@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=phantom
-Date                   :=26/03/2016
+Date                   :=27/03/2016
 CodeLitePath           :="E:\develop\CodeLite"
 LinkerName             :=E:/develop/tdmgcc/bin/g++.exe
 SharedObjectLinkerName :=E:/develop/tdmgcc/bin/g++.exe -shared -fPIC
@@ -62,7 +62,7 @@ AS       := E:/develop/tdmgcc/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=E:\develop\CodeLite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/src_gl3w.c$(ObjectSuffix) $(IntermediateDirectory)/core_ViewOGL.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/src_gl3w.c$(ObjectSuffix) $(IntermediateDirectory)/core_ViewOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_PxBase.cpp$(ObjectSuffix) $(IntermediateDirectory)/cmn_PxLog.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Application.cpp$(ObjectSuffix) 
 
 
 
@@ -93,14 +93,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/develop/code/opengl_core/core/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM "main.cpp"
-
-$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) "main.cpp"
-
 $(IntermediateDirectory)/src_gl3w.c$(ObjectSuffix): src/gl3w.c $(IntermediateDirectory)/src_gl3w.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "E:/develop/code/opengl_core/core/src/gl3w.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/src_gl3w.c$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/src_gl3w.c$(DependSuffix): src/gl3w.c
@@ -116,6 +108,46 @@ $(IntermediateDirectory)/core_ViewOGL.cpp$(DependSuffix): core/ViewOGL.cpp
 
 $(IntermediateDirectory)/core_ViewOGL.cpp$(PreprocessSuffix): core/ViewOGL.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/core_ViewOGL.cpp$(PreprocessSuffix) "core/ViewOGL.cpp"
+
+$(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix): core/ShaderOGL.cpp $(IntermediateDirectory)/core_ShaderOGL.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/develop/code/opengl_core/core/core/ShaderOGL.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/core_ShaderOGL.cpp$(DependSuffix): core/ShaderOGL.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/core_ShaderOGL.cpp$(DependSuffix) -MM "core/ShaderOGL.cpp"
+
+$(IntermediateDirectory)/core_ShaderOGL.cpp$(PreprocessSuffix): core/ShaderOGL.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/core_ShaderOGL.cpp$(PreprocessSuffix) "core/ShaderOGL.cpp"
+
+$(IntermediateDirectory)/core_PxBase.cpp$(ObjectSuffix): core/PxBase.cpp $(IntermediateDirectory)/core_PxBase.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/develop/code/opengl_core/core/core/PxBase.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/core_PxBase.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/core_PxBase.cpp$(DependSuffix): core/PxBase.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/core_PxBase.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/core_PxBase.cpp$(DependSuffix) -MM "core/PxBase.cpp"
+
+$(IntermediateDirectory)/core_PxBase.cpp$(PreprocessSuffix): core/PxBase.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/core_PxBase.cpp$(PreprocessSuffix) "core/PxBase.cpp"
+
+$(IntermediateDirectory)/cmn_PxLog.cpp$(ObjectSuffix): cmn/PxLog.cpp $(IntermediateDirectory)/cmn_PxLog.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/develop/code/opengl_core/core/cmn/PxLog.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cmn_PxLog.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/cmn_PxLog.cpp$(DependSuffix): cmn/PxLog.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/cmn_PxLog.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/cmn_PxLog.cpp$(DependSuffix) -MM "cmn/PxLog.cpp"
+
+$(IntermediateDirectory)/cmn_PxLog.cpp$(PreprocessSuffix): cmn/PxLog.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/cmn_PxLog.cpp$(PreprocessSuffix) "cmn/PxLog.cpp"
+
+$(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/develop/code/opengl_core/core/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM "main.cpp"
+
+$(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) "main.cpp"
+
+$(IntermediateDirectory)/Application.cpp$(ObjectSuffix): Application.cpp $(IntermediateDirectory)/Application.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/develop/code/opengl_core/core/Application.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Application.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Application.cpp$(DependSuffix): Application.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Application.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Application.cpp$(DependSuffix) -MM "Application.cpp"
+
+$(IntermediateDirectory)/Application.cpp$(PreprocessSuffix): Application.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Application.cpp$(PreprocessSuffix) "Application.cpp"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)

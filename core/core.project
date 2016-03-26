@@ -19,9 +19,6 @@
   </Plugins>
   <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="src">
-    <File Name="main.cpp"/>
-  </VirtualDirectory>
   <VirtualDirectory Name="3rd">
     <File Name="include/GL/gl3w.h"/>
     <File Name="include/GL/glcorearb.h"/>
@@ -30,6 +27,10 @@
   <VirtualDirectory Name="core">
     <File Name="core/ViewOGL.cpp"/>
     <File Name="core/ViewOGL.h"/>
+    <File Name="core/ShaderOGL.h"/>
+    <File Name="core/ShaderOGL.cpp"/>
+    <File Name="core/PxBase.h"/>
+    <File Name="core/PxBase.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -120,4 +121,13 @@
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="cmn">
+    <File Name="cmn/PxLog.h"/>
+    <File Name="cmn/PxLog.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="shell">
+    <File Name="main.cpp"/>
+    <File Name="Application.h"/>
+    <File Name="Application.cpp"/>
+  </VirtualDirectory>
 </CodeLite_Project>

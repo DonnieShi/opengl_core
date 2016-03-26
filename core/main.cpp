@@ -1,11 +1,10 @@
 #include <windows.h>
-#include <gl/gl.h>
-#include <gl/glext.h>
 #include <stdio.h>
 #include <assert.h>
-#include "core/ViewOGL.h"
 
-px::ViewOGL * view;
+#include "Application.h"
+
+Application app;
 
 LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
 void EnableOpenGL(HWND hwnd, HDC*, HGLRC*);
@@ -53,17 +52,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
                           NULL,
                           hInstance,
                           NULL);
-						  
-	view = px::CreateView( hwnd );
     
-    assert(view);
-
-    ShowWindow(hwnd, nCmdShow);	
-	
-	system("CHCP 65001");
-	
-	fclose(stdout);
-
+    app.Start( hwnd );
+    
+    ShowWindow(hwnd, nCmdShow);
     /* program main loop */
     while (!bQuit)
     {
@@ -84,13 +76,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
         else
         {
 			unsigned long tick = GetTickCount();
-			view->Begin();
-            
-            view->End();
+			app.OnRender( tick );
         }
     }
     
-    view->Release();
+    app.End();
     /* destroy the window explicitly */
     DestroyWindow(hwnd);
 

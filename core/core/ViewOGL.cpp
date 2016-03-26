@@ -13,7 +13,7 @@ px::ViewOGL::~ViewOGL()
 }
 
 
-px::ViewOGL* px::CreateView(void* _wnd)
+px::ViewOGL* px::ViewOGL::CreateView(void* _wnd)
 {
     ViewOGL * viewOGL = new ViewOGL;
     
@@ -54,7 +54,7 @@ px::ViewOGL* px::CreateView(void* _wnd)
     if (gl3wInit()) {
 		fprintf(stderr, "failed to initialize OpenGL\n");
 	}
-    
+        
     int major = 4, minor = 5;
 	if (!gl3wIsSupported( major, minor )) {
 		fprintf(stderr, "OpenGL %d.%d not supported\n", major, minor );
@@ -84,4 +84,10 @@ void px::ViewOGL::Release()
     wglDeleteContext( (HGLRC)this->hrc );
     ReleaseDC( (HWND)this->hwnd , (HDC)this->hdc );
     delete this;
+}
+
+void px::ViewOGL::Resize(int _w, int _h)
+{
+    viewport.w = _w;
+    viewport.h = _h;
 }
