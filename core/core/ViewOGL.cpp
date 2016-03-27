@@ -1,8 +1,14 @@
 #include <windows.h>
 #include <gl/gl3w.h>
 #include "ViewOGL.h"
-#include <gl/gl.h>
+#include <gl/wglext.h>
 #include <stdio.h>
+
+typedef HGLRC (WINAPI * PFNWGLCREATECONTEXTATTRIBSARBPROC) (HDC hDC, HGLRC hShareContext, const int *attribList);
+typedef BOOL (WINAPI * PFNWGLCHOOSEPIXELFORMATARBPROC) (HDC hdc, const int *piAttribIList, const FLOAT *pfAttribFList, UINT nMaxFormats,  
+                                                        int *piFormats, UINT *nNumFormats);
+typedef BOOL (WINAPI * PFNWGLSWAPINTERVALEXTPROC) (int interval);  
+
 
 px::ViewOGL::ViewOGL()
 {
@@ -44,25 +50,56 @@ px::ViewOGL* px::ViewOGL::CreateView(void* _wnd)
 	if (!bResult) // If it fails
 		return NULL;
 	
-	HGLRC tempOpenGLContext = wglCreateContext(hdc); // Create an OpenGL 2.1 context for our device context
-	wglMakeCurrent(hdc, tempOpenGLContext); // Make the OpenGL 2.1 context current and active
-    
-	viewOGL->hrc = (void *)tempOpenGLContext;
+	HGLRC glrc = wglCreateContext(hdc); // Create an OpenGL 2.1 context for our device context
+	wglMakeCurrent(hdc, glrc); // Make the OpenGL 2.1 context current and active
+	viewOGL->hrc = (void *)glrc;
     
     // init opengl core profile
+	 PFNWGLCHOOSEPIXELFORMATARBPROC wglChoosePixelFormatARB = (PFNWGLCHOOSEPIXELFORMATARBPROC)wglGetProcAddress("wglChoosePixelFormatARB");  
+	 PFNWGLCREATECONTEXTATTRIBSARBPROC wglCreateContextAttribsARB = (PFNWGLCREATECONTEXTATTRIBSARBPROC)wglGetProcAddress("wglCreateContextAttribsARB");  
+	 PFNWGLSWAPINTERVALEXTPROC wglSwapIntervalEXT = (PFNWGLSWAPINTERVALEXTPROC)wglGetProcAddress("wglSwapIntervalEXT");  
+	 
+	 if( wglSwapIntervalEXT && wglCreateContextAttribsARB && wglChoosePixelFormatARB)
+	 {
+		 const int attribList[] =
+		{
+			WGL_DRAW_TO_WINDOW_ARB, GL_TRUE,
+			WGL_SUPPORT_OPENGL_ARB, GL_TRUE,
+			WGL_DOUBLE_BUFFER_ARB, GL_TRUE,
+			WGL_PIXEL_TYPE_ARB, WGL_TYPE_RGBA_ARB,
+			WGL_COLOR_BITS_ARB, 32,
+			WGL_DEPTH_BITS_ARB, 24,
+			WGL_STENCIL_BITS_ARB, 8,
+			0,//End
+		};
+
+		int pixelFormat;
+		UINT numFormats;
+		wglChoosePixelFormatARB(hdc, attribList, NULL, 1, &pixelFormat, &numFormats);
+		
+		static const int attribs[] = {
+				WGL_CONTEXT_MAJOR_VERSION_ARB, OGL_MAJOR,
+				WGL_CONTEXT_MINOR_VERSION_ARB, OGL_MINOR,
+				WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
+				WGL_CONTEXT_FLAGS_ARB, WGL_CONTEXT_DEBUG_BIT_ARB,
+				0
+			};
+		HGLRC core_rc =  wglCreateContextAttribsARB(hdc, 0, attribs);
+		wglMakeCurrent(hdc, core_rc);
+		wglDeleteContext( glrc );
+	 }
     
     if (gl3wInit()) {
 		fprintf(stderr, "failed to initialize OpenGL\n");
 	}
-        
-    int major = 4, minor = 5;
-	if (!gl3wIsSupported( major, minor )) {
-		fprintf(stderr, "OpenGL %d.%d not supported\n", major, minor );
+	
+	if (!gl3wIsSupported( OGL_MAJOR, OGL_MINOR )) {
+		fprintf(stderr, "OpenGL %d.%d not supported\n", OGL_MAJOR, OGL_MINOR );
 	}
     
 	printf("OpenGL %s, GLSL %s\n", glGetString(GL_VERSION),
 	       glGetString(GL_SHADING_LANGUAGE_VERSION));
-    
+		   
     return viewOGL;
 }
 

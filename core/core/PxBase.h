@@ -1,6 +1,9 @@
 #ifndef __PX_BASE_H__
 #define __PX_BASE_H__
 
+#define OGL_MAJOR 4
+#define OGL_MINOR 1
+
 namespace px
 {
     struct PxPoint

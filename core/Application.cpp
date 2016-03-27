@@ -5,7 +5,7 @@
 
 const char * shader_vert = SHADER_TEXT(
     
-    \x23version 450 core                                \n
+    \x23version 410 core                                \n
                                                         \n
     void main(void)                                     \n
     {                                                   \n
@@ -22,7 +22,7 @@ const char * shader_vert = SHADER_TEXT(
 
 const char * shader_frag = SHADER_TEXT(
 
-    \x23version 450 core                                \n
+    \x23version 410 core                                \n
                                                         \n
     out vec4 color;                                     \n
                                                         \n
