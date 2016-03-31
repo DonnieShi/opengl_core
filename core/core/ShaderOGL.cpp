@@ -11,7 +11,6 @@ px::ShaderOGL::~ShaderOGL()
     
 }
 
-
 px::ShaderOGL* px::ShaderOGL::CreateShader( const char* _vert, const char* _frag)
 {
     if( strlen(_vert) < 16 || strlen(_frag) < 16)

@@ -1,6 +1,7 @@
 #ifndef __PX_VIEW_OGL_H__
 #define __PX_VIEW_OGL_H__
 
+#include "opengl_conf.h"
 #include "PxBase.h"
 
 namespace px

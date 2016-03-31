@@ -6,21 +6,21 @@
 namespace px
 {
 
-class ShaderOGL
-{
-public:
-    ShaderOGL();
-    ~ShaderOGL();
-    
-    void Bind();
-    void Release();
-private:
-    GLuint      m_vert;
-    GLuint      m_frag;
-    GLuint      m_prog;
-public:
-    static ShaderOGL * CreateShader( const char * _vert, const char * _frag );
-};
+    class ShaderOGL
+    {
+    public:
+        ShaderOGL();
+        ~ShaderOGL();
+        
+        void Bind();
+        void Release();
+    private:
+        GLuint      m_vert;
+        GLuint      m_frag;
+        GLuint      m_prog;
+    public:
+        static ShaderOGL * CreateShader( const char * _vert, const char * _frag );
+    };
 
 }
 

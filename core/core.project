@@ -31,6 +31,7 @@
     <File Name="core/ShaderOGL.cpp"/>
     <File Name="core/PxBase.h"/>
     <File Name="core/PxBase.cpp"/>
+    <File Name="core/opengl_conf.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

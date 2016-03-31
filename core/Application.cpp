@@ -4,19 +4,12 @@
 #define SHADER_TEXT( T ) #T
 
 const char * shader_vert = SHADER_TEXT(
-    
     \x23version 410 core                                \n
+    layout(location = 0) in vec3 position;              \n
                                                         \n
     void main(void)                                     \n
     {                                                   \n
-        // Declare a hard-coded array of positions      \n
-        const vec4 vertices[] = vec4[](                 \n
-            vec4(0.25, -0.25, 0.5, 1.0),                \n
-            vec4(-0.25, -0.25, 0.5, 1.0),               \n
-            vec4(0.25, 0.25, 0.5, 1.0)                  \n
-        );                                              \n
-        // Index into our array using gl_VertexID       \n
-        gl_Position = vertices[gl_VertexID];            \n
+        gl_Position = vec4(position, 1.0);              \n
     }                                                   \n
 );
 
@@ -32,6 +25,17 @@ const char * shader_frag = SHADER_TEXT(
     }                                                   \n
 );
 
+GLuint vbo,ibo,vao;
+
+float triangle[] = {
+    -1.0, -1.0, 0.0,
+    1.0, -1.0, 0.0,
+    0, 1.0, 0.0
+};
+
+unsigned int indices[] = {
+    0, 1, 2
+};
 
 Application::Application()
 {
@@ -48,6 +52,16 @@ void Application::Start(void* _hwnd)
     view = px::ViewOGL::CreateView( _hwnd );
     shader = px::ShaderOGL::CreateShader( shader_vert, shader_frag );
     assert( view && shader );
+    
+    glCreateBuffers(1, &vbo);
+    glCreateBuffers(1, &ibo);
+    glGenVertexArrays(1, &vao);
+    
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
+    
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 }
 
 void Application::End()
@@ -60,7 +74,16 @@ void Application::OnRender(unsigned long _tick)
     view->Begin();
     
     shader->Bind();
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    
+    // 索引为1处的格式
+    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,0,0);
+    glEnableVertexAttribArray(0);
+    
+    glBindVertexArray( vao );
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+    
+    glDrawElements( GL_TRIANGLES, 3, GL_UNSIGNED_INT, NULL);
     
     view->End();
 }
