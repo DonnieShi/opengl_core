@@ -7,44 +7,10 @@
 #include <cstring>
 #include <utility>
 #include <algorithm>
-#include <string>
-#include <type_traits>
+#include "PxHash.h"
 
 namespace px
 {
-    #define LRSHIFT( V, OFFSET ) (V<<OFFSET | V>>(32-OFFSET) )
-    
-    template<class KEY >
-    size_t HashFunc__( KEY& _key, const size_t _size ) ;
-    
-    template< class KEY >
-    size_t HashFunc( KEY& _key, const size_t _size ) 
-    {
-        typedef typename std::decay<KEY>::type KEY_TYPE;
-        const KEY_TYPE key = _key;
-        return HashFunc__( key, _size );
-    }
-    
-    template<class KEY >
-    size_t HashFunc__( KEY& _key, const size_t _size ) 
-    {
-        size_t bytes = sizeof(_key);
-        size_t hash = 0;        
-        const unsigned char * ptr = reinterpret_cast<const unsigned char*>(&_key);
-        for(size_t i = 0; i<bytes; ++i)
-        {
-            size_t t = LRSHIFT(ptr[i], (i * 4) % 32);
-            hash += t;
-        }
-        return hash%_size;
-    }
-    
-    template<>
-    size_t HashFunc__( const char * const& _key, const size_t _size );
-    template<>
-    size_t HashFunc__( const std::string & _key, const size_t _size );
-    
-    
     template<class T1, class T2>
     bool Equal__( T1& value1, T2& value2);
     template<class T1, class T2>
@@ -107,12 +73,11 @@ namespace px
         
         void Set( const  keyType& _key, const valueType& _val)
         {
-            size_t sz = listArray.size();
-            size_t index = HashFunc<keyType>( _key, sz );
+            size_t index = px::Hash( _key ) % listArray.size();
             Item *& item = listArray[index];
             Item * newItem = new Item;
-            newItem->key = std::forward<keyType>(_key);
-            newItem->value = std::forward<valueType>(_val);
+            newItem->key = _key;
+            newItem->value = _val;
             newItem->next = NULL;
             while(item)
             {
@@ -121,18 +86,18 @@ namespace px
             item = newItem;
         }
         
-        bool Get( const keyType&& _key, const valueType _val)
+        bool Get( const keyType& _key, valueType& _val)
         {
-            size_t index = HashFunc<keyType>( _key );
+            size_t index = px::Hash( _key ) % listArray.size();
             Item *& item = listArray[index];
             while(item)
             {
-                item = item->next;
                 if( Equal(item->key, _key ) )
                 {
                     _val = item->value;
                     return true;
                 }
+                item = item->next;
             }
             return false;
         }        
@@ -178,9 +143,9 @@ namespace px
             });
         }
         
-        void Set( const keyType&_key ,  valueType& _val)
+        void Set( const keyType&_key , const valueType& _val)
         {
-            size_t index = HashFunc< const char * const >( _key, listArray.size());
+            size_t index = px::Hash( _key) % listArray.size();
             Item *& item = listArray[index];
             Item * newItem = new Item;
             newItem->key = std::string(_key);
@@ -195,8 +160,7 @@ namespace px
         
         bool Get( const keyType & _key, valueType& _val)
         {
-            size_t size = listArray.size();
-            size_t index = HashFunc( _key, size );
+            size_t index = px::Hash( _key ) % listArray.size();
             Item *& item = listArray[index];
             while(item)
             {
@@ -249,9 +213,9 @@ namespace px
             });
         }
         
-        void Set( const keyType&_key ,  valueType& _val)
+        void Set( const keyType&_key , const valueType& _val)
         {
-            size_t index = HashFunc< const char * const >( _key, listArray.size());
+            size_t index = px::Hash( _key ) % listArray.size();
             Item *& item = listArray[index];
             Item * newItem = new Item;
             newItem->key = _key;
@@ -266,8 +230,7 @@ namespace px
         
         bool Get( const keyType & _key, valueType& _val)
         {
-            size_t size = listArray.size();
-            size_t index = HashFunc( _key, size );
+            size_t index = px::Hash(_key) % listArray.size();
             Item *& item = listArray[index];
             while(item)
             {
@@ -322,7 +285,7 @@ namespace px
         
         void Set( const keyType&_key , const valueType& _val)
         {
-            size_t index = HashFunc< const char * const >( _key, listArray.size());
+            size_t index = px::Hash( _key ) % listArray.size();
             Item *& item = listArray[index];
             Item * newItem = new Item;
             newItem->key = std::string(_key);
@@ -337,8 +300,7 @@ namespace px
         
         bool Get( const keyType & _key, valueType& _val)
         {
-            size_t size = listArray.size();
-            size_t index = HashFunc( _key, size );
+            size_t index = px::Hash( _key ) % listArray.size() ;
             Item *& item = listArray[index];
             while(item)
             {
