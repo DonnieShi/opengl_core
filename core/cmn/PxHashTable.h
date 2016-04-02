@@ -81,6 +81,11 @@ namespace px
             newItem->next = NULL;
             while(item)
             {
+                if( px::Equal(_key, item->key ) )
+                {
+                    item->value = _val;
+                    return ;
+                }
                 item = item->next;
             }
             item = newItem;
@@ -153,6 +158,11 @@ namespace px
             newItem->next = NULL;
             while(item)
             {
+                if( px::Equal(_key, item->key ) )
+                {
+                    item->value = _val;
+                    return ;
+                }
                 item = item->next;
             }
             item = newItem;
@@ -223,6 +233,11 @@ namespace px
             newItem->next = NULL;
             while(item)
             {
+                if( px::Equal(_key, item->key ) )
+                {
+                    item->value = _val;
+                    return ;
+                }
                 item = item->next;
             }
             item = newItem;
@@ -293,6 +308,11 @@ namespace px
             newItem->next = NULL;
             while(item)
             {
+                if( px::Equal(_key, item->key ) )
+                {
+                    item->value = _val;
+                    return ;
+                }
                 item = item->next;
             }
             item = newItem;
