@@ -62,6 +62,17 @@ void Application::Start(void* _hwnd)
     
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    
+      hashTable.Set("lixin", "view");
+      const char * ptr;
+      bool ret = hashTable.Get( "lixin",ptr);
+//      const char * ssss = "lixin";
+//     size_t hash = 0;
+//    hash = px::HashFunc("lixin",64);
+//     hash = px::HashFunc(ssss,64);
+//      printf("%d",hash);
+//    GLuint value;
+   // bool ret = hashTable.Get("lixin", value);
 }
 
 void Application::End()

@@ -33,6 +33,21 @@
     <File Name="core/PxBase.cpp"/>
     <File Name="core/opengl_conf.h"/>
   </VirtualDirectory>
+  <VirtualDirectory Name="cmn">
+    <File Name="cmn/PxLog.h"/>
+    <File Name="cmn/PxLog.cpp"/>
+    <File Name="cmn/PxHashTable.h"/>
+    <File Name="cmn/PxHashTable.cpp"/>
+    <File Name="cmn/PxHash.cpp"/>
+    <File Name="cmn/PxHash.h"/>
+    <File Name="cmn/PxUtils.cpp"/>
+    <File Name="cmn/PxUtils.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="shell">
+    <File Name="main.cpp"/>
+    <File Name="Application.h"/>
+    <File Name="Application.cpp"/>
+  </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -43,8 +58,8 @@
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
-    <Configuration Name="Debug" CompilerType="MinGW ( gcc.exe (tdm-1) 4.9.2 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+    <Configuration Name="Debug" CompilerType="MinGW ( gcc.exe (tdm-1) 5.1.0 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;-O0;-Wall;-std=c++11" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <IncludePath Value="./include"/>
       </Compiler>
@@ -122,13 +137,6 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="cmn">
-    <File Name="cmn/PxLog.h"/>
-    <File Name="cmn/PxLog.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="shell">
-    <File Name="main.cpp"/>
-    <File Name="Application.h"/>
-    <File Name="Application.cpp"/>
-  </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

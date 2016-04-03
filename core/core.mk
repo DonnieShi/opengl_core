@@ -5,16 +5,16 @@
 ## Debug
 ProjectName            :=core
 ConfigurationName      :=Debug
-WorkspacePath          := "E:\develop\code\opengl_core"
-ProjectPath            := "E:\develop\code\opengl_core\core"
+WorkspacePath          :=E:/develop/code/opengl_core
+ProjectPath            :=E:/develop/code/opengl_core/core
 IntermediateDirectory  :=../../tmp/$(ProjectName)
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=phantom
-Date                   :=01/04/2016
-CodeLitePath           :="E:\develop\CodeLite"
+Date                   :=03/04/2016
+CodeLitePath           :=E:/develop/CodeLite
 LinkerName             :=E:/develop/tdmgcc/bin/g++.exe
 SharedObjectLinkerName :=E:/develop/tdmgcc/bin/g++.exe -shared -fPIC
 ObjectSuffix           :=.o
@@ -52,7 +52,7 @@ LibPath                := $(LibraryPathSwitch).
 AR       := E:/develop/tdmgcc/bin/ar.exe rcu
 CXX      := E:/develop/tdmgcc/bin/g++.exe
 CC       := E:/develop/tdmgcc/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -g -O0 -Wall -std=c++11 $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := E:/develop/tdmgcc/bin/as.exe
@@ -62,7 +62,8 @@ AS       := E:/develop/tdmgcc/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=E:\develop\CodeLite
-Objects0=$(IntermediateDirectory)/src_gl3w.c$(ObjectSuffix) $(IntermediateDirectory)/core_ViewOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_PxBase.cpp$(ObjectSuffix) $(IntermediateDirectory)/cmn_PxLog.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Application.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/src_gl3w.c$(ObjectSuffix) $(IntermediateDirectory)/core_ViewOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_PxBase.cpp$(ObjectSuffix) $(IntermediateDirectory)/cmn_PxLog.cpp$(ObjectSuffix) $(IntermediateDirectory)/cmn_PxHashTable.cpp$(ObjectSuffix) $(IntermediateDirectory)/cmn_PxHash.cpp$(ObjectSuffix) $(IntermediateDirectory)/cmn_PxUtils.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Application.cpp$(ObjectSuffix) \
+	
 
 
 
@@ -132,6 +133,30 @@ $(IntermediateDirectory)/cmn_PxLog.cpp$(DependSuffix): cmn/PxLog.cpp
 
 $(IntermediateDirectory)/cmn_PxLog.cpp$(PreprocessSuffix): cmn/PxLog.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/cmn_PxLog.cpp$(PreprocessSuffix) "cmn/PxLog.cpp"
+
+$(IntermediateDirectory)/cmn_PxHashTable.cpp$(ObjectSuffix): cmn/PxHashTable.cpp $(IntermediateDirectory)/cmn_PxHashTable.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/develop/code/opengl_core/core/cmn/PxHashTable.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cmn_PxHashTable.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/cmn_PxHashTable.cpp$(DependSuffix): cmn/PxHashTable.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/cmn_PxHashTable.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/cmn_PxHashTable.cpp$(DependSuffix) -MM "cmn/PxHashTable.cpp"
+
+$(IntermediateDirectory)/cmn_PxHashTable.cpp$(PreprocessSuffix): cmn/PxHashTable.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/cmn_PxHashTable.cpp$(PreprocessSuffix) "cmn/PxHashTable.cpp"
+
+$(IntermediateDirectory)/cmn_PxHash.cpp$(ObjectSuffix): cmn/PxHash.cpp $(IntermediateDirectory)/cmn_PxHash.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/develop/code/opengl_core/core/cmn/PxHash.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cmn_PxHash.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/cmn_PxHash.cpp$(DependSuffix): cmn/PxHash.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/cmn_PxHash.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/cmn_PxHash.cpp$(DependSuffix) -MM "cmn/PxHash.cpp"
+
+$(IntermediateDirectory)/cmn_PxHash.cpp$(PreprocessSuffix): cmn/PxHash.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/cmn_PxHash.cpp$(PreprocessSuffix) "cmn/PxHash.cpp"
+
+$(IntermediateDirectory)/cmn_PxUtils.cpp$(ObjectSuffix): cmn/PxUtils.cpp $(IntermediateDirectory)/cmn_PxUtils.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/develop/code/opengl_core/core/cmn/PxUtils.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/cmn_PxUtils.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/cmn_PxUtils.cpp$(DependSuffix): cmn/PxUtils.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/cmn_PxUtils.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/cmn_PxUtils.cpp$(DependSuffix) -MM "cmn/PxUtils.cpp"
+
+$(IntermediateDirectory)/cmn_PxUtils.cpp$(PreprocessSuffix): cmn/PxUtils.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/cmn_PxUtils.cpp$(PreprocessSuffix) "cmn/PxUtils.cpp"
 
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/develop/code/opengl_core/core/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)

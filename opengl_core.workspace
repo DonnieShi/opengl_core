@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="opengl_core" Database="">
   <Project Name="core" Path="core/core.project" Active="Yes"/>
+  <Project Name="hashtable" Path="hashtable/hashtable.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
       <Project Name="core" ConfigName="Debug"/>
+      <Project Name="hashtable" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="core" ConfigName="Release"/>
+      <Project Name="hashtable" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

@@ -4,6 +4,8 @@
 #include "./core/ViewOGL.h"
 #include "./core/ShaderOGL.h"
 
+#include "./cmn/PxHashTable.h"
+
 class Application
 {
 public:
@@ -12,6 +14,7 @@ public:
 private:
     px::ViewOGL * view;
     px::ShaderOGL * shader;
+    px::PxHashTable< const char *, const char *> hashTable;
 public:
     void Start( void * _hwnd );
     void End();
