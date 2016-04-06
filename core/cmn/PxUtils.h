@@ -13,8 +13,8 @@ namespace px
     {
         typedef typename std::decay<T1>::type TYPE1;
         typedef typename std::decay<T2>::type TYPE2;
-        const TYPE1 t1 = value1;
-        const TYPE2 t2 = value2;
+        const TYPE1& t1 = value1;
+        const TYPE2& t2 = value2;
         return Equal__( t1, t2 );
     } 
 
