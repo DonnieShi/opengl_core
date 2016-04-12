@@ -73,8 +73,9 @@ namespace px
         va->nlayout = 0;
         while(layout->size != 0)
         {
-            ++va.nlayout;
+            ++va->nlayout;
         }
+        return va;
     }
     
     void VertexArray::Bind()
@@ -85,23 +86,22 @@ namespace px
         for(int i = 0; i<nlayout; ++i)
         {
             glEnableVertexAttribArray( layouts[i].index );
-            glVertexAttribPointer(layouts[i].index, layouts[i].size,layouts[i].type,GL_FALSE, layouts[i].stride, layouts.offset );
+            glVertexAttribPointer(layouts[i].index, layouts[i].size,layouts[i].type,GL_FALSE, layouts[i].stride, layouts[i].offset );
         }
     }
     
     void VertexArray::DrawTriangle( GLsizei _nPoints )
     {
         glDrawElements( GL_TRIANGLES, _nPoints, GL_UNSIGNED_INT, NULL);
-        glDeleteVertexArrays(1, &va);
-        ib->Release();
-        vb->Release();
-        delete this;
     }
     
     void VertexArray::Release()
     {
         glBindVertexArray( 0 );
-        glDeleteBuffers
+        glDeleteVertexArrays(1, &va);
+        ib->Release();
+        vb->Release();
+        delete this;
     }
 
 }

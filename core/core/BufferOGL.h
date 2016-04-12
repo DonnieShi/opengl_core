@@ -49,7 +49,7 @@ namespace px
         void Bind();
         void DrawTriangle( GLsizei _nPoints );
         void Release();
-    }
+    };
 }
 
 #endif // __PX_BUFFER_OGL_H__
