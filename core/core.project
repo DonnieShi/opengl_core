@@ -42,6 +42,8 @@
     <File Name="cmn/PxHash.h"/>
     <File Name="cmn/PxUtils.cpp"/>
     <File Name="cmn/PxUtils.h"/>
+    <File Name="cmn/PxMem.h"/>
+    <File Name="cmn/PxMem.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="shell">
     <File Name="main.cpp"/>
