@@ -26,7 +26,6 @@
   </VirtualDirectory>
   <VirtualDirectory Name="core">
     <File Name="core/ViewOGL.cpp"/>
-    <File Name="core/ViewOGL.h"/>
     <File Name="core/ShaderOGL.h"/>
     <File Name="core/ShaderOGL.cpp"/>
     <File Name="core/PxBase.h"/>
@@ -51,6 +50,7 @@
     <File Name="main.cpp"/>
     <File Name="Application.h"/>
     <File Name="Application.cpp"/>
+    <File Name="core/ViewOGL.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
