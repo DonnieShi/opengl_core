@@ -1,6 +1,13 @@
 #ifndef __PX_MEM_H__
 #define __PX_MEM_H__
 
+#define __PX_MEM_DEBUG 1
+
+#if __PX_MEM_DEBUG
+#include "PxLog.h"
+#include <typeinfo>
+#endif
+
 #include <stdlib.h>
 
 namespace px
@@ -80,6 +87,12 @@ namespace px
 			while( currNode )
 			{
 				MemNode * t = currNode;
+#if __PX_MEM_DEBUG
+				if(t->size != t->free)
+				{
+					PXLOG_I("PxMem<%s>::Leak detected : %d blocks %d bytes\n", typeid(T).name(), t->size - t->free, (t->size - t->free) * sizeof(T) );
+				}
+#endif
 				currNode = currNode->next;
 				freeNode( t );
 			}
@@ -116,6 +129,25 @@ namespace px
 				currNode = currNode->next;
 			}
 			return false;
+		}
+		
+		void fit()
+		{
+			MemNode * prev = head;
+			MemNode * curr = prev->next;
+			while( curr )
+			{
+				if(curr->free == curr->size )
+				{
+					prev->next = curr->next;
+					freeNode( curr );
+					curr= prev->next;
+				}
+				else
+				{
+					curr = curr->next;
+				}
+			}
 		}
 	};
 }
