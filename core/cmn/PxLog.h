@@ -4,6 +4,8 @@
 #include <stdio.h>
 
 #define PXLOG_I(...) printf(__VA_ARGS__)
+#define PXLOG_W(...) printf(__VA_ARGS__)
+#define PXLOG_E(...) printf(__VA_ARGS__)
 
 namespace px
 {
