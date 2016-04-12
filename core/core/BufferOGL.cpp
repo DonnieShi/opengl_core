@@ -63,19 +63,20 @@ namespace px
     
     VertexArray * VertexArray::New( StaticVB * _vb, StaticIB * _ib, VertexArray::Layout* _layout )
     {
-        VertexArray * va = new VertexArray;
-        glGenVertexArrays(1, &va->va);
+        VertexArray * _va = new VertexArray;
+        glGenVertexArrays(1, &_va->va);
         __gl_check_error__
-        va->ib = ib;
-        va->vb = vb;
+        _va->ib = _ib;
+        _va->vb = _vb;
         VertexArray::Layout * layout = _layout;
-        va->layouts = _layout;
-        va->nlayout = 0;
+        _va->layouts = _layout;
+        _va->nlayout = 0;
         while(layout->size != 0)
         {
-            ++va->nlayout;
+            ++_va->nlayout;
+            ++layout;
         }
-        return va;
+        return _va;
     }
     
     void VertexArray::Bind()

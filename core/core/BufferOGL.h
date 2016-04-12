@@ -45,7 +45,7 @@ namespace px
         Layout *        layouts;
         unsigned short  nlayout;
     public:
-        VertexArray * New( StaticVB * _vb, StaticIB * _ib, VertexArray::Layout* _layout );
+        static VertexArray * New( StaticVB * _vb, StaticIB * _ib, VertexArray::Layout* _layout );
         void Bind();
         void DrawTriangle( GLsizei _nPoints );
         void Release();

@@ -106,6 +106,13 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
                 break;
             }
         }
+        case WM_SIZE:
+        {
+            WORD nWidth, nHeight;
+            nWidth = LOWORD(lParam); // width of client area
+            nHeight = HIWORD(lParam); // height of client area
+            app.GetView()->Resize( nWidth, nHeight );
+        }
         break;
 
         default:

@@ -37,6 +37,11 @@ unsigned int indices[] = {
     0, 1, 2
 };
 
+px::VertexArray::Layout triLayout[] = {
+{0, 3, GL_FLOAT, 0, 0},
+{0,0,0,0,0}
+};
+
 Application::Application()
 {
     
@@ -53,26 +58,12 @@ void Application::Start(void* _hwnd)
     shader = px::ShaderOGL::CreateShader( shader_vert, shader_frag );
     assert( view && shader );
     
-    glCreateBuffers(1, &vbo);
-    glCreateBuffers(1, &ibo);
-    glGenVertexArrays(1, &vao);
+    px::StaticIB * ib = px::StaticIB::New( indices, sizeof(indices) );
+    px::StaticVB * vb = px::StaticVB::New( triangle, sizeof(triangle) );
     
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
+    vao = px::VertexArray::New( vb, ib, &triLayout[0] );
     
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-    
-      hashTable.Set("lixin", "view");
-      const char * ptr;
-      bool ret = hashTable.Get( "lixin",ptr);
-//      const char * ssss = "lixin";
-//     size_t hash = 0;
-//    hash = px::HashFunc("lixin",64);
-//     hash = px::HashFunc(ssss,64);
-//      printf("%d",hash);
-//    GLuint value;
-   // bool ret = hashTable.Get("lixin", value);
+    this->vao->Bind();
 }
 
 void Application::End()
@@ -85,16 +76,13 @@ void Application::OnRender(unsigned long _tick)
     view->Begin();
     
     shader->Bind();
-    
-    // 索引为1处的格式
-    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,0,0);
-    glEnableVertexAttribArray(0);
-    
-    glBindVertexArray( vao );
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-    
-    glDrawElements( GL_TRIANGLES, 3, GL_UNSIGNED_INT, NULL);
+
+    this->vao->DrawTriangle( 3 );
     
     view->End();
+}
+
+px::ViewOGL * Application::GetView()
+{
+    return view;
 }

@@ -127,5 +127,6 @@ void px::ViewOGL::Release()
 void px::ViewOGL::Resize(int _w, int _h)
 {
     viewport.w = _w;
-    viewport.h = _h;
+    viewport.h = _h;    
+    glViewport(0, 0, _w, _h);
 }
