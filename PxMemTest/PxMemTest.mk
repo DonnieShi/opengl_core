@@ -7,13 +7,13 @@ ProjectName            :=PxMemTest
 ConfigurationName      :=Debug
 WorkspacePath          := "D:\gits\opengl_core"
 ProjectPath            := "D:\gits\opengl_core\PxMemTest"
-IntermediateDirectory  :=./Debug
+IntermediateDirectory  :=../../tmp/$(ProjectName)
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=12/04/2016
+Date                   :=13/04/2016
 CodeLitePath           :="E:\application\CodeLite"
 LinkerName             :=E:/tdmgcc32/bin/g++.exe
 SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
@@ -27,7 +27,7 @@ OutputSwitch           :=-o
 LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
-OutputFile             :=$(IntermediateDirectory)/$(ProjectName)
+OutputFile             :=../../bin/$(ProjectName)/$(ProjectName)
 Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
@@ -84,11 +84,11 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 MakeIntermediateDirs:
-	@$(MakeDirCommand) "./Debug"
+	@$(MakeDirCommand) "../../tmp/$(ProjectName)"
 
 
 $(IntermediateDirectory)/.d:
-	@$(MakeDirCommand) "./Debug"
+	@$(MakeDirCommand) "../../tmp/$(ProjectName)"
 
 PreBuild:
 
@@ -150,6 +150,6 @@ $(IntermediateDirectory)/cmn_PxUtils.cpp$(PreprocessSuffix): ../core/cmn/PxUtils
 ## Clean
 ##
 clean:
-	$(RM) -r ./Debug/
+	$(RM) -r ../../tmp/$(ProjectName)/
 
 

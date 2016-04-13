@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="opengl_core" Database="">
-  <Project Name="core" Path="core/core.project" Active="Yes"/>
-  <Project Name="hashtable" Path="hashtable/hashtable.project" Active="No"/>
+  <Project Name="core" Path="core/core.project" Active="No"/>
+  <Project Name="PxHashTableTest" Path="hashtable/hashtable.project" Active="No"/>
+  <Project Name="PxMemTest" Path="PxMemTest/PxMemTest.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
       <Project Name="core" ConfigName="Debug"/>
-      <Project Name="hashtable" ConfigName="Debug"/>
+      <Project Name="PxHashTableTest" ConfigName="Debug"/>
+      <Project Name="PxMemTest" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="core" ConfigName="Release"/>
-      <Project Name="hashtable" ConfigName="Release"/>
+      <Project Name="PxHashTableTest" ConfigName="Release"/>
+      <Project Name="PxMemTest" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

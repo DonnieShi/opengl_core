@@ -33,6 +33,7 @@
     <File Name="core/opengl_conf.h"/>
     <File Name="core/BufferOGL.h"/>
     <File Name="core/BufferOGL.cpp"/>
+    <File Name="core/ViewOGL.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="cmn">
     <File Name="cmn/PxLog.h"/>
@@ -50,7 +51,6 @@
     <File Name="main.cpp"/>
     <File Name="Application.h"/>
     <File Name="Application.cpp"/>
-    <File Name="core/ViewOGL.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
